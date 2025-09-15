@@ -22,3 +22,16 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
+
+    import pandas as pd
+
+    datos = pd.read_csv("files/input/tbl1.tsv", sep="\t")
+
+    def funcion(lista):
+        lista = sorted(lista)
+        lista = ",".join(map(str, lista))
+        return lista
+    
+    datos = datos.pivot_table(index="c0", values="c4", aggfunc=funcion)
+    
+    return datos.reset_index()

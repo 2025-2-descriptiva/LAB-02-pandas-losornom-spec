@@ -20,3 +20,8 @@ def pregunta_04():
     E    4.785714
     Name: c2, dtype: float64
     """
+    import pandas as pd
+
+    datos = pd.read_csv("files/input/tbl0.tsv", sep = "\t")
+
+    return datos.groupby("c1")["c2"].mean()

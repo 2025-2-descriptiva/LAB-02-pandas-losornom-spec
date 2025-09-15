@@ -22,3 +22,17 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
+
+    import pandas as pd
+
+    datos = pd.read_csv("files/input/tbl2.tsv", sep="\t")
+
+    def funcion(lista):
+        lista = sorted(lista)
+        lista = ",".join(map(str, lista))
+        return lista  
+    datos["c5"] = [f"{a}:{b}" for a, b in zip(datos["c5a"], datos["c5b"])]
+
+    tabla = datos.pivot_table(index="c0", values="c5", aggfunc=funcion)
+
+    return tabla.reset_index()

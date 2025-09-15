@@ -20,3 +20,14 @@ def pregunta_10():
     D                   1:2:3:5:5:7
     E   1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
+
+    import pandas as pd
+
+    datos = pd.read_csv("files/input/tbl0.tsv", sep="\t")
+
+    def funcion(lista):
+        lista = sorted(lista)
+        lista = ":".join(map(str, lista))
+        return lista
+
+    return datos.pivot_table(index="c1", values="c2", aggfunc=funcion)
